@@ -3,43 +3,43 @@
 @baseUrl = http://localhost:8000/api
 
 # получение датчиков
-GET {{baseUrl}}/sensors/
+GET {{baseUrl}}/sensors/all
 Content-Type: application/json
 
 ###
 
 # создание датчика
-POST {{baseUrl}}/sensors/
+POST {{baseUrl}}/sensors/add
 Content-Type: application/json
 
 {
-  "name": "ESP32",
-  "description": "Датчик на кухне за холодильником"
+  "name": "new_sensor",
+  "description": "Еще один датчик"
 }
 
 ###
 
 # обновление датчика
-PATCH {{baseUrl}}/sensors/1/
+PATCH {{baseUrl}}/sensors/update/5
 Content-Type: application/json
 
 {
-  "description": "Перенес датчик на балкон"
+  "description": "Перенес датчик еще куда-то"
 }
 
 ###
 
 # добавление измерения
-POST {{baseUrl}}/measurements/
+POST {{baseUrl}}/sensors/measurement
 Content-Type: application/json
 
 {
-  "sensor": 1,
+  "sensor_id": 5,
   "temperature": 22.3
 }
 
 ###
 
 # получение информации по датчику
-GET {{baseUrl}}/sensors/1/
+GET {{baseUrl}}/sensors/details/5
 Content-Type: application/json

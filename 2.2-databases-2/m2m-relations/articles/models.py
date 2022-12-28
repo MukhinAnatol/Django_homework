@@ -16,7 +16,7 @@ class Article(models.Model):
     text = models.TextField(verbose_name='Текст')
     published_at = models.DateTimeField(verbose_name='Дата публикации')
     image = models.ImageField(null=True, blank=True, verbose_name='Изображение',)
-    scopes = models.ManyToManyField(Tag, through='Scope')
+    scope = models.ManyToManyField(Tag, through='Scope')
 
 
     class Meta:
@@ -28,6 +28,6 @@ class Article(models.Model):
         return self.title
 
 class Scope(models.Model):
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    tag = models.ForeignKey(Tag, on_delete=models.CASCADE, related_name='scopes')
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scopes')
     is_main = models.BooleanField(default=False, verbose_name='Основной')
