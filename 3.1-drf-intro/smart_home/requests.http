@@ -3,28 +3,28 @@
 @baseUrl = http://localhost:8000/api
 
 # получение датчиков
-GET {{baseUrl}}/sensors/all
+GET {{baseUrl}}/sensors/view
 Content-Type: application/json
 
 ###
 
 # создание датчика
-POST {{baseUrl}}/sensors/add
+POST {{baseUrl}}/sensors/view
 Content-Type: application/json
 
 {
-  "name": "new_sensor",
-  "description": "Еще один датчик"
+  "name": "another_sensor",
+  "description": "И еще один датчик"
 }
 
 ###
 
 # обновление датчика
-PATCH {{baseUrl}}/sensors/update/5
+PATCH {{baseUrl}}/sensors/detailed/7
 Content-Type: application/json
 
 {
-  "description": "Перенес датчик еще куда-то"
+  "description": "Перенес еще в какое-то место"
 }
 
 ###
@@ -34,12 +34,12 @@ POST {{baseUrl}}/sensors/measurement
 Content-Type: application/json
 
 {
-  "sensor_id": 5,
-  "temperature": 22.3
+  "sensor_id": 4,
+  "temperature": 27.2
 }
 
 ###
 
 # получение информации по датчику
-GET {{baseUrl}}/sensors/details/5
+GET {{baseUrl}}/sensors/detailed/6
 Content-Type: application/json

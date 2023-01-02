@@ -1,27 +1,21 @@
 # TODO: опишите необходимые обработчики, рекомендуется использовать generics APIView классы:
 # TODO: ListCreateAPIView, RetrieveUpdateAPIView, CreateAPIView
-from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView, RetrieveUpdateAPIView
+
 from measurement.models import Sensor, Measurement
-from measurement.serializers import MeasurementSerializer, SensorSerializer, SensorDetailSerializer
+from measurement.serializers import SensorSerializer, SensorDetailSerializer, AddMeasurementSerializer
 
-
-class AddSensor(CreateAPIView):
+class SensorsView(ListCreateAPIView):
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
 
-class ListSensors(ListAPIView):
-    queryset = Sensor.objects.all()
-    serializer_class = SensorSerializer
 
-class UpdateSensor(UpdateAPIView):
+class SensorGetView(RetrieveUpdateAPIView):
     queryset = Sensor.objects.all()
-    serializer_class = SensorSerializer
+    serializer_class = SensorDetailSerializer
+
 
 class AddMeasurement(CreateAPIView):
     queryset = Measurement.objects.all()
-    serializer_class = MeasurementSerializer
+    serializer_class = AddMeasurementSerializer
 
-
-class GetSensor(RetrieveAPIView):
-    queryset = Sensor.objects.all()
-    serializer_class = SensorDetailSerializer
